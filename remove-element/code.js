@@ -4,15 +4,46 @@
  * @return {number}
  */
 const removeElement = function(nums, val) {
+    // let counter = 0;
+    // for(let i = 0; i < nums.length; i++) {
+    //   if(nums[i] === val) {
+    //      nums[i] = null;
+    //      counter++;
+    //   }
+    // }
+    // nums.sort();
+    // return nums.length-counter;
+
+    let replacePosition = 0;
     let counter = 0;
-    for(let i = 0; i < nums.length; i++) {
-      if(nums[i] === val) {
-         nums[i] = null;
-         counter++;
+
+    const swapAndMove = (currentPosition) => {
+      if(replacePosition < currentPosition) {
+        if(nums[replacePosition] === val) {
+          nums[replacePosition] = nums[currentPosition];
+          nums[currentPosition] = 'chomp';
+          counter++;
+        } else {
+          replacePosition++;
+          counter++;
+          swapAndMove(currentPosition);
+        }
       }
     }
-    nums.sort();
-    return nums.length-counter;
+
+   
+
+    for(let i = nums.length-1; i >= replacePosition; i--) {
+      console.log(i);
+      if(nums[i] !== val) {
+        swapAndMove(i);
+      } else {
+        nums[i] = 'chomp';
+      }
+    }
+
+    console.log(nums);
+    console.log(counter);
     
 };
 
