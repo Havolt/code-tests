@@ -3,18 +3,16 @@
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-      const existing = {}
-      let i = 0;
+      if (nums.length === 0) return 0;
+      let i = 1;
       while( i < nums.length) {
-      if(existing[nums[i]]) {
-         console.log('match');
+      if(nums[i] === nums[i-1]) {
          nums.splice(i, 1)
       } else {
-         existing[nums[i]] = true;
          i++;
       }
     }
-    console.log(existing);
+    return i;
 };
 
 const arrA = [1,1,2, 3, 3,  4, 4, 5, 5, 5, 7, 8, 8];
