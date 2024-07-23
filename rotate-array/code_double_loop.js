@@ -4,6 +4,8 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function(nums, k) {
+
+   k = k % nums.length;
    
    for(let j = 0; j < k; j++) {
       const lastItem = nums[nums.length-1];
