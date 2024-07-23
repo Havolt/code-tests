@@ -5,11 +5,13 @@
  */
 var rotate = function(nums, k) {
    
-   const lastItem = nums[nums.length-1];
-   for(let i = nums.length-1; i > 0; i--) {
-      nums[i] = nums[i-1];
+   for(let j = 0; j < k; j++) {
+      const lastItem = nums[nums.length-1];
+      for(let i = nums.length-1; i > 0; i--) {
+         nums[i] = nums[i-1];
+      }
+      nums[0] = lastItem;
    }
-   nums[0] = lastItem;
  
 };
 
