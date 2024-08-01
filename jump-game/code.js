@@ -4,35 +4,55 @@
  */
 var canJump = function(nums) {
    let position = 0;
-   let jumpDistance = nums[0];
-    
-   // We look over the elements we can jump to.
-   // Get the maximum distance we can travel from there
-   // Then repeat
 
    const getMaxDistance = (jumpDistance) => {
       let largestPossibleJump = 0;
+      let largestJumpIndex;
       
-      console.log(jumpDistance)
+      // console.log({jumpDistance})
+      // console.log({position})
 
-      for(let i = position+1; i <= jumpDistance; i++) {
+      for(let i = position+1; i <= position+jumpDistance; i++) {
          const positionBonus = i - position;
          const fullJump = positionBonus + nums[i];
          if(fullJump > largestPossibleJump) {
             largestPossibleJump = fullJump;
+            largestJumpIndex = i;
          }
-         console.log({largestPossibleJump})
-         console.log({positionBonus})
+         // console.log({fullJump});
+         // console.log({largestPossibleJump})
+         // console.log({positionBonus})
+         // console.log({largestJumpIndex})
       }
 
-      if(position + largestPossibleJump > nums.length) {
-         console.log(true)
+
+      if(!largestJumpIndex) {
+         console.log({largestJumpIndex})
+         console.log(false, '!largestJumpIndex');
+         return;
       }
+
+      if(position + largestPossibleJump >= nums.length-1) {
+         console.log(true)
+         return;
+      }
+
+      if(position === largestJumpIndex) {
+         console.log(false, 'position === largestJumpIndex');
+         return;
+      }
+
+      
+
+      position = largestJumpIndex ;
+      getMaxDistance(nums[position]);
    }
 
    getMaxDistance(nums[0]);
+   console.log({position});
 };
 
 canJump([2,3,1,1,4])
 canJump([3,2,1,0,4])
 canJump([3,3,1,5,2,8,0]);
+canJump([1,1,1,1,1,1,1,1,1,1,1,0]);
